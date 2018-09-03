@@ -1,5 +1,5 @@
 |**拡張子**|**種類**|
-|:---:|:---:|
+|:---:|:---|
 | .xla| Excel.Addin|
 | .xlam| Excel.AddinMacroEnabled|
 | .xls| Excel.Sheet.8|
