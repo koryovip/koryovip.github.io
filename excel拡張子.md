@@ -8,3 +8,6 @@
 | .xlt| Excel.Template.8|
 | .xltm| Excel.TemplateMacroEnabled|
 | .xltx| Excel.Template|
+
+
+http://www.asahi-net.or.jp/~ef2o-inue/kankyo/sub02_03_031.html
