@@ -1,0 +1,46 @@
+remote_prompt = '#'
+username = 'root'
+password = 'root'
+
+;; hostname = '192.168.56.101'
+
+
+;; 配列設定(接続先IPアドレスを代入)
+strdim HOSTNM 5
+HOSTNM[0] = 'ap01'
+HOSTNM[1] = 'ap02'
+HOSTNM[2] = 'ap03'
+HOSTNM[3] = 'ap04'
+HOSTNM[4] = 'ESXi-CentOS7'
+
+strdim HOSTIP 5
+HOSTIP[0] = '192.168.0.201'
+HOSTIP[1] = '192.168.0.202'
+HOSTIP[2] = '192.168.0.203'
+HOSTIP[3] = '192.168.0.204'
+HOSTIP[4] = '192.168.0.150'
+
+;===============================================
+;; 接続先ホスト選択
+listbox 'select' 'choose the host' HOSTNM
+if result >= 0 then
+    HOSTADDR = HOSTIP[result]
+else
+    end
+endif
+
+msg = HOSTADDR
+strconcat msg ':22 /ssh /auth=password /user='
+strconcat msg username
+strconcat msg ' /passwd='
+strconcat msg password
+
+connect msg
+
+wait remote_prompt
+sendln "export HISTCONTROL=ignoreboth"
+sendln " export PS1='\t \u@\h \w [${PIPESTATUS[@]}] \$ '"
+sendln " alias llll='ls -lhd $PWD/*'"
+sendln " alias ps\?='ps aux | grep -v grep | grep'"
+sendln " alias untar='tar xvzf'"
+sendln " echo `getconf LONG_BIT`bit OS"
